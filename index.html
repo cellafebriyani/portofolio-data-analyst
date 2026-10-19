@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cela Febriyani's portfolio in data analytics, dashboard development, and machine learning.">
+  <title>Cela Febriyani | Data Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #fff7fa;
+      --white: #ffffff;
+      --pink: #d95791;
+      --pink-dark: #bd3f78;
+      --pink-light: #fce7f3;
+      --text: #493542;
+      --muted: #897382;
+      --line: #f1dce7;
+      --plum: #57364a;
+      --shadow: 0 16px 40px rgba(87, 54, 74, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; line-height: 1.3; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1100px, 90%); margin: 0 auto; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: rgba(255,249,252,.95); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+    .nav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: var(--plum); white-space: nowrap; }
+    .logo span { color: var(--pink); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .nav-links a:hover { color: var(--pink-dark); }
+
+    .hero {
+      padding: 90px 0 80px;
+      background: radial-gradient(ellipse at 85% 20%, #f9d9e9 0, transparent 38%),
+                  radial-gradient(ellipse at 5% 85%, #fff0f6 0, transparent 35%), var(--bg);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; gap: 60px; }
+    .eyebrow { display: inline-block; color: var(--pink-dark); background: var(--pink-light); border: 1px solid #f7d2e3; border-radius: 30px; padding: 7px 14px; font-size: 11px; font-weight: 800; letter-spacing: 1px; margin-bottom: 22px; }
+    .hero h1 { font-size: clamp(38px, 5vw, 58px); letter-spacing: -2px; color: var(--plum); margin-bottom: 18px; }
+    .hero h1 span { color: var(--pink); }
+    .hero-copy { max-width: 590px; color: var(--muted); font-size: 15px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-block; border-radius: 10px; padding: 12px 19px; font-size: 13px; font-weight: 800; transition: transform .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--pink); color: white; }
+    .btn-primary:hover { background: var(--pink-dark); }
+    .btn-outline { border: 1px solid #e9c9d9; background: white; color: var(--plum); }
+
+    .profile-card { padding: 30px; background: rgba(255,255,255,.94); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
+    .profile-photo { width: 145px; height: 165px; object-fit: cover; object-position: center top; border-radius: 18px; border: 4px solid var(--pink-light); background: var(--pink-light); margin-bottom: 20px; }
+    .profile-fallback { width: 145px; height: 165px; display: none; place-items: center; color: var(--pink-dark); background: var(--pink-light); border-radius: 18px; font-size: 30px; font-weight: 800; margin-bottom: 20px; }
+    .profile-card h3 { color: var(--plum); font-size: 21px; }
+    .profile-card > p { color: var(--muted); font-size: 13px; margin-top: 5px; }
+    .profile-detail { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 16px; }
+    .profile-detail p { color: var(--muted); font-size: 13px; margin: 8px 0; }
+
+    section { padding: 76px 0; scroll-margin-top: 85px; }
+    .section-heading { margin-bottom: 30px; }
+    .section-label { color: var(--pink-dark); font-size: 11px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; }
+    .section-heading h2 { color: var(--plum); font-size: 32px; margin-top: 8px; }
+    .section-heading > p, .about-text { max-width: 800px; color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+    .education-card, .experience-card, .skill-card, .project-card, .certificate-card { background: var(--white); border: 1px solid var(--line); border-radius: 17px; box-shadow: 0 8px 25px rgba(87,54,74,.035); }
+    .education-card { padding: 27px; }
+    .education-card h3, .experience-card h3, .skill-card h3, .project-body h3, .certificate-content h3 { color: var(--plum); }
+    .date { color: var(--pink-dark); font-size: 13px; font-weight: 800; margin: 7px 0; }
+    .education-card p:not(.date) { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+    .experience-list { display: grid; gap: 20px; }
+    .experience-card { padding: 27px; }
+    .experience-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 15px; }
+    .experience-top h3 { font-size: 18px; }
+    .experience-top p { color: var(--muted); font-size: 13px; margin-top: 5px; }
+    .date-tag { background: var(--pink-light); color: var(--pink-dark); border-radius: 8px; padding: 6px 10px; font-size: 11px; font-weight: 800; }
+    .experience-card ul { padding-left: 20px; }
+    .experience-card li { color: var(--muted); font-size: 13px; margin: 9px 0; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 17px; }
+    .skill-card { padding: 23px; }
+    .skill-card h3 { font-size: 16px; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { display: inline-block; background: #fff0f6; color: #8e4569; border: 1px solid #f7dfeb; border-radius: 8px; padding: 5px 9px; font-size: 11px; font-weight: 700; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; align-items: start; }
+    .project-card { overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .project-images { display: flex; flex-direction: column; gap: 12px; }
+    .project-images img { width: 100%; height: 220px; object-fit: contain; border-radius: 12px; }
+    .project-placeholder { min-height: 145px; padding: 23px; background: linear-gradient(135deg,#fce7f3,#fff2f8); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; color: var(--plum); border-bottom: 1px solid var(--line); }
+    .project-placeholder .symbol { color: var(--pink); font-size: 32px; margin-bottom: 8px; }
+    .project-placeholder h3 { font-size: 17px; }
+    .project-body { padding: 22px; }
+    .project-body h3 { font-size: 17px; }
+    .project-body p { color: var(--muted); font-size: 13px; margin: 11px 0 15px; }
+    .project-note { padding: 10px 12px; background: #fff7fa; border-left: 3px solid var(--pink); border-radius: 5px; font-size: 12px !important; }
+
+    /* Certificates Grid - 4 Columns */
+    .certificates-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, minmax(0, 1fr)); 
+      gap: 16px; 
+    }
+
+    .certificate-card { 
+      display: flex; 
+      flex-direction: column; 
+      padding: 16px; 
+      transition: transform 0.25s ease, box-shadow 0.25s ease; 
+    }
+    .certificate-card:hover { 
+      transform: translateY(-4px); 
+      box-shadow: var(--shadow); 
+    }
+
+    .certificate-img-wrapper {
+      width: 100%;
+      height: 140px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: var(--pink-light);
+      border: 1px solid var(--line);
+    }
+
+    .certificate-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .certificate-img-wrapper img:hover {
+      transform: scale(1.04);
+    }
+
+    .certificate-content h3 { 
+      font-size: 14px; 
+      line-height: 1.4;
+      margin-bottom: 6px; 
+    }
+
+    .certificate-content p { 
+      color: var(--muted); 
+      font-size: 12px; 
+      margin-bottom: 10px; 
+      line-height: 1.5; 
+    }
+
+    .certificate-issuer { 
+      color: var(--pink-dark); 
+      font-size: 11px; 
+      font-weight: 700; 
+      background: var(--pink-light); 
+      padding: 3px 8px; 
+      border-radius: 6px; 
+      display: inline-block; 
+    }
+
+    .contact-box { padding: 43px; background: linear-gradient(135deg,#57364a,#78415f); color: white; border-radius: 23px; box-shadow: var(--shadow); }
+    .contact-box h2 { font-size: 31px; margin-bottom: 12px; }
+    .contact-box p { color: #f4dce8; max-width: 650px; font-size: 14px; }
+    .contact-box .buttons { margin-top: 22px; }
+    .contact-box .btn-primary { background: white; color: var(--plum); }
+    .contact-box .btn-outline { background: transparent; border-color: #d6b7c8; color: white; }
+    footer { padding: 24px 0; text-align: center; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
+
+    .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(45,25,39,.9); display: none; align-items: center; justify-content: center; padding: 25px; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: min(1100px,96vw); max-height: 90vh; object-fit: contain; background: white; border-radius: 10px; }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .certificates-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { gap: 12px 16px; }
+      .hero { padding: 60px 0; }
+      .hero-grid, .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 30px; }
+      section { padding: 56px 0; }
+      .section-heading h2 { font-size: 27px; }
+      .contact-box { padding: 30px 24px; }
+    }
+    @media (max-width: 520px) {
+      .certificates-grid { grid-template-columns: 1fr; }
+      .project-images { grid-template-columns: 1fr; }
+      .project-images img { height: auto; max-height: 260px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Cela<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">My Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">INFORMATICS ENGINEERING GRADUATE</span>
+        <h1>Hello, I'm<br><span>Cela Febriyani.</span></h1>
+        <p class="hero-copy">
+          A fresh graduate with a Bachelor's degree in Informatics Engineering from the University of Lampung, with a strong interest in data
+          analytics, business intelligence, and machine learning. Experienced in data collection, preprocessing, analysis, and visualization, as well
+          as developing interactive dashboards and machine learning models. Skilled in Python, SQL, and business intelligence tools, with the
+          ability to transform data into actionable insights to support data-driven and decision-making
+        </p>
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">Explore My Projects ↗</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <img
+          src="images/Pas-Foto.jpeg"
+          alt="Pas foto Cela Febriyani"
+          class="profile-photo"
+          onerror="this.style.display='none'; document.getElementById('profile-fallback').style.display='grid';"
+        >
+        <div class="profile-fallback" id="profile-fallback">CF</div>
+        <h3>Cela Febriyani</h3>
+        <p>Data Analytics & Technology</p>
+        <div class="profile-detail">
+          <p>🎓 Informatics Engineering</p>
+          <p>📍 University of Lampung, Indonesia</p>
+          <p>📊 Data Analytics & Visualization</p>
+          <p>💻 Python, SQL & Business Intelligence</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">A Little About Me</span>
+          <h2>About Me 🌷</h2>
+        </div>
+        <p class="about-text">
+          I am a fresh graduate with a Bachelor's degree in Informatics Engineering
+          from the University of Lampung. My experience includes data collection,
+          preprocessing, validation, analysis, visualization, dashboard development,
+          and machine learning projects. I am interested in using data and technology
+          to support monitoring, reporting, and data-driven decision-making, and I am
+          eager to continue learning and growing.
+        </p>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Academic Background</span>
+          <h2>Education 🎓</h2>
+        </div>
+        <div class="education-card">
+          <h3>University of Lampung</h3>
+          <p class="date">August 2021 – September 2025</p>
+          <p>Bachelor's Degree in Informatics Engineering</p>
+          <p>GPA: 3.88 / 4.00 · Cum Laude</p>
+          <p>Second-Best Graduate, Informatics Engineering, Graduation Period I, Academic Year 2024/2025.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Professional Journey</span>
+          <h2>Work Experience 💼</h2>
+          <p>Experience across data management, analytics, dashboard development, and machine learning.</p>
+        </div>
+
+        <div class="experience-list">
+          <article class="experience-card">
+            <div class="experience-top">
+              <div>
+                <h3>Ministry of Marine Affairs and Fisheries (KKP)</h3>
+                <p>Gambir, Central Jakarta · Internship — Data and Information Analyst</p>
+              </div>
+              <span class="date-tag">Dec 2025 – Jun 2026</span>
+            </div>
+            <ul>
+              <li>Developed an interactive web-based dashboard using Python and Streamlit to monitor fisheries infrastructure and facilities, covering data input, cleaning, preprocessing, and transformation for analysis and visualization.</li>
+              <li>Conducted gap analysis using Microsoft Excel and PivotTables to identify regions lacking infrastructure and facilities, supporting infrastructure planning and development proposals.</li>
+              <li>Prepared monthly performance reports for the Master Development Plan Working Team by compiling and organizing performance data and supporting information.</li>
+              <li>Supported administrative and coordination activities by preparing meeting attendance sheets, meeting minutes, and supporting documents.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="experience-top">
+              <div>
+                <h3>Yayasan Alam Taman Kupu-Kupu Gita Persada</h3>
+                <p>Bandar Lampung · Internship — Machine Learning</p>
+              </div>
+              <span class="date-tag">May 2024 – Aug 2024</span>
+            </div>
+            <ul>
+              <li>Collected and organized plant image datasets, including leaves, stems, flowers, and whole-plant images at Taman Kupu-Kupu Gita Persada.</li>
+              <li>Trained and evaluated Convolutional Neural Network (CNN) models using Google Colab, comparing different training configurations and achieving the best classification accuracy of 87.31%.</li>
+              <li>Contributed to the development of PlantScan, an Android-based plant identification application, and scientific journal writing.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="experience-top">
+              <div>
+                <h3>PT GreatEdu Global Mahardika</h3>
+                <p>Jakarta · Independent Study — Data Analyst</p>
+              </div>
+              <span class="date-tag">Aug 2023 – Dec 2023</span>
+            </div>
+            <ul>
+              <li>Processed and analyzed data using Python and SQL to identify patterns and generate insights.</li>
+              <li>Conducted an end-to-end data analytics project on air pollution in Jakarta, from business understanding to business recommendations.</li>
+              <li>Developed interactive data visualizations using Looker Studio to communicate findings and support data-driven decision-making.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Tools in My Toolbox</span>
+          <h2>Skills & Tools ✨</h2>
+          <p>Tools and technical skills used in academic, internship, and data-related projects.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Data Analysis</h3>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">SQL</span>
+              <span class="tag">Excel</span><span class="tag">Google Sheets</span>
+              <span class="tag">Pandas</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Dashboards & Visualization</h3>
+            <div class="tags">
+              <span class="tag">Power BI</span><span class="tag">Tableau</span>
+              <span class="tag">Looker Studio</span><span class="tag">Plotly</span>
+              <span class="tag">Streamlit</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Machine Learning</h3>
+            <div class="tags">
+              <span class="tag">GRU</span><span class="tag">LSTM</span>
+              <span class="tag">ARIMA</span><span class="tag">CNN</span>
+              <span class="tag">XGBoost</span><span class="tag">Google Colab</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Things I've Worked On</span>
+          <h2>My Projects 🎀</h2>
+          <p>A selection of projects involving data visualization, analytics, and machine learning.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-images">
+              <img src="images/dashboard-kkp1.png" alt="KKP infrastructure monitoring dashboard" class="zoomable">
+              <img src="images/dashboard-kkp2.png" alt="KKP infrastructure and facilities proposal dashboard" class="zoomable">
+            </div>
+            <div class="project-body">
+              <h3>KKP Infrastructure Monitoring & Proposal Dashboard</h3>
+              <p>
+                Developed an interactive web-based dashboard to support monitoring
+                of fisheries infrastructure and facilities, as well as information
+                related to infrastructure and facility proposals.
+              </p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">Streamlit</span>
+                <span class="tag">Pandas</span><span class="tag">Plotly</span>
+                <span class="tag">Excel</span>
+              </div>
+              <p class="project-note">
+                Please publish only approved screenshots and non-confidential information.
+                Use synthetic or anonymized data where needed.
+              </p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-images">
+              <img src="images/dashboard-polusi-jkt1.png" alt="Jakarta air pollution analysis dashboard" class="zoomable">
+              <img src="images/dashboard-polusi-jkt2.png" alt="Jakarta air pollution dashboard visualization" class="zoomable">
+            </div>
+            <div class="project-body">
+              <h3>Jakarta Air Pollution Data Analytics</h3>
+              <p>
+                An end-to-end data analytics project completed during an independent
+                study, from business understanding and data analysis to business
+                recommendations, with interactive visualizations in Looker Studio.
+              </p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">SQL</span>
+                <span class="tag">Looker Studio</span><span class="tag">Data Analytics</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-images single">
+              <img src="images/Prediksi-AQI-GRUARIMA.png" alt="Google Colab training for GRU and ARIMA-GRU air quality prediction" class="zoomable">
+            </div>
+            <div class="project-body">
+              <h3>Air Quality Prediction: GRU vs. ARIMA-GRU</h3>
+              <p>
+                Undergraduate thesis comparing GRU and ARIMA-GRU models for air
+                quality prediction in Palembang City. Model training and evaluation
+                were performed in Python using Google Colab.
+              </p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">Google Colab</span>
+                <span class="tag">GRU</span><span class="tag">ARIMA-GRU</span>
+                <span class="tag">Time Series</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-images single">
+              <img src="images/Training-model-CNN.png" alt="CNN model training in Google Colab for plant classification" class="zoomable">
+            </div>
+            <div class="project-body">
+              <h3>Plant Image Classification — PlantScan</h3>
+              <p>
+                Trained and evaluated CNN models in Python using Google Colab to
+                classify plant images. The project supported development of an
+                Android-based plant identification application and scientific writing.
+              </p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">Google Colab</span>
+                <span class="tag">CNN</span><span class="tag">Image Classification</span>
+              </div>
+              <p class="project-note">Best classification accuracy: 87.31%.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-images single">
+              <img src="images/dashboard-superstore-tableau.png" alt="Tableau Superstore dashboard practice project" class="zoomable">
+            </div>
+            <div class="project-body">
+              <h3>Superstore Sales Dashboard</h3>
+              <p>
+                A Tableau dashboard practice project exploring business data through
+                charts and interactive visualizations to build business intelligence
+                and dashboard design skills.
+              </p>
+              <div class="tags">
+                <span class="tag">Tableau</span><span class="tag">Data Visualization</span>
+                <span class="tag">Dashboard Design</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section (4 Columns Top & 4 Columns Bottom) -->
+    <section id="certificates">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">My Credentials</span>
+          <h2>Certificates & Achievements 🏆</h2>
+          <p>
+            Certificates and achievements that reflect my learning
+            journey and professional development.
+          </p>
+        </div>
+
+        <div class="certificates-grid">
+          <!-- Item 1 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-maganghub.png" alt="Maganghub Kemnaker - Analis Data dan Informasi" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>Analis Data dan Informasi</h3>
+              <p>Maganghub Kemnaker · 2026</p>
+              <span class="certificate-issuer">Kemnaker RI</span>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-ept.png" alt="English Proficiency Test" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>English Proficiency Test</h3>
+              <p>Language Proficiency Test · 2025</p>
+              <span class="certificate-issuer">University of Lampung</span>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-bnsp.png" alt="BNSP Data Scientist" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>BNSP Data Scientist</h3>
+              <p>Professional Certification · 2024</p>
+              <span class="certificate-issuer">BNSP</span>
+            </div>
+          </article>
+
+          <!-- Item 4 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-mbkm-penelitian.png" alt="MBKM Penelitian Universitas Lampung" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>MBKM Penelitian</h3>
+              <p>Research Internship Program · 2024</p>
+              <span class="certificate-issuer">University of Lampung</span>
+            </div>
+          </article>
+
+          <!-- Item 5 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-dqlab.png" alt="DQLab - Python Fundamental for Data Science" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>Python Fundamental for Data Science</h3>
+              <p>Online Course Certificate · 2024</p>
+              <span class="certificate-issuer">DQLab</span>
+            </div>
+          </article>
+
+          <!-- Item 6 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-studi-independen.png" alt="Studi Independen - Data Analis" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>Studi Independen - Data Analis</h3>
+              <p>Kampus Merdeka Program · 2023</p>
+              <span class="certificate-issuer">GreatEdu / MSIB</span>
+            </div>
+          </article>
+
+          <!-- Item 7 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-freecodecamp.png" alt="freeCodeCamp - Responsive Web Design" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>Responsive Web Design</h3>
+              <p>Developer Certification · 2023</p>
+              <span class="certificate-issuer">freeCodeCamp</span>
+            </div>
+          </article>
+
+          <!-- Item 8 -->
+          <article class="certificate-card">
+            <div class="certificate-img-wrapper">
+              <img src="images/sertifikat-oracle.png" alt="Oracle Academy - Database Programming with SQL" class="zoomable">
+            </div>
+            <div class="certificate-content">
+              <h3>Database Programming with SQL</h3>
+              <p>Academic Course Certificate · 2022</p>
+              <span class="certificate-issuer">Oracle Academy</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Let's Connect! 💌</h2>
+          <p>
+            I am open to opportunities in data analytics, business intelligence,
+            and related technology fields. Feel free to reach out or explore my work.
+          </p>
+          <div class="buttons">
+            <a href="mailto:cellafebriani0702@gmail.com" class="btn btn-primary">Email Me ↗</a>
+            <a href="https://github.com/cellafebriyani" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/cela-febriyani-b5819b280/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Made with care by Cela Febriyani · © 2026</div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-label="Enlarged screenshot. Click to close.">
+    <img src="" alt="Enlarged project screenshot" id="lightbox-image">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+
+    document.querySelectorAll('.zoomable').forEach((image) => {
+      image.addEventListener('click', () => {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightboxImage.src = '';
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        lightbox.classList.remove('open');
+        lightboxImage.src = '';
+      }
+    });
+  </script>
+</body>
+</html>
